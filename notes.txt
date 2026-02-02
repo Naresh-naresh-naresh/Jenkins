@@ -1,4 +1,2 @@
-Hi there,
-I am naresh.
-This change is from feature branch.
+This line is added via Pull Request practice.
 
