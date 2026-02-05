@@ -3,3 +3,4 @@ This line is added via Pull Request practice.
 new job test for github
 new job test for github 1
 naresh is trying to access the github
+Checking he github trigger after the correction of the url path such that adding the / command after the github webhook
