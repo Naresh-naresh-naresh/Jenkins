@@ -1,48 +1,32 @@
 pipeline {
     agent any
 
+    // Environment block is where you define variables for the whole pipeline
+    environment {
+        APP_NAME = "Jenkins-Study-Project"
+        OWNER = "Naresh"
+    }
+
     stages {
-        stage('Checkout') {
+        stage('Initialize') {
             steps {
-                // This pulls the latest code from your GitHub repo
-                checkout scm 
+                // In Groovy, we use ${} to print a variable inside a string
+                echo "Starting build for ${APP_NAME}..."
+                echo "Managed by: ${OWNER}"
             }
         }
 
-        stage('Build & Lint') {
+        stage('Build & Test') {
             steps {
-                echo 'Checking HTML syntax... 🏗️'
-                // We just 'echo' for now to simulate a build
-                sh 'ls -lh' 
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Verifying content... 🧪'
-                // This checks if your <h1> tag actually exists in the file
-                sh 'grep -i "Jenkins" index.html' 
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying to Staging Environment... 🚀'
-                // In a real job, this would move files to a web server
-                echo 'Application is live at http://itqa-automation.runwayci.com'
+                echo "Running build for ${APP_NAME} version 1.0"
+                sh 'grep -i "Jenkins" index.html'
             }
         }
     }
 
     post {
-        always {
-            echo 'Cleaning up the workspace... 🧹'
-        }
         success {
-            echo 'Build Successful! Great job, Naresh.'
-        }
-        failure {
-            echo 'Build Failed. Check your index.html for errors.'
+            echo "Successfully finished ${APP_NAME}! Great work, ${OWNER}."
         }
     }
 }
